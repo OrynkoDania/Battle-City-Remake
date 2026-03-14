@@ -27,10 +27,18 @@ while running:
                 bullets.append(Bullet(player.x + 15, player.y))
 
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]: player.move(0, -1)
-    if keys[pygame.K_s]: player.move(0, 1)
-    if keys[pygame.K_a]: player.move(-1, 0)
-    if keys[pygame.K_d]: player.move(1, 0)
+    dx, dy = 0, 0
+
+    if keys[pygame.K_UP] or keys[pygame.K_w]:
+        dy = -1
+    elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
+        dy = 1
+    elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
+        dx = -1
+    elif keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+        dx = 1
+
+    player.move(dx, dy)
 
     spawn_timer += 1
     if spawn_timer > 120:
